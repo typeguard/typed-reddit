@@ -1,4 +1,4 @@
-# Typed Reddit
+# Reddit – Typed JSON API
 
 > Reddit post list API
 
