@@ -4,16 +4,16 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.*;
 
 public class Reddit {
-    private String kind;
-    private RedditData data;
+    private String message;
+    private long error;
 
-    @JsonProperty("kind")
-    public String getKind() { return kind; }
-    @JsonProperty("kind")
-    public void setKind(String value) { this.kind = value; }
+    @JsonProperty("message")
+    public String getMessage() { return message; }
+    @JsonProperty("message")
+    public void setMessage(String value) { this.message = value; }
 
-    @JsonProperty("data")
-    public RedditData getData() { return data; }
-    @JsonProperty("data")
-    public void setData(RedditData value) { this.data = value; }
+    @JsonProperty("error")
+    public long getError() { return error; }
+    @JsonProperty("error")
+    public void setError(long value) { this.error = value; }
 }
