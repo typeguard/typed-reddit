@@ -1,10 +1,10 @@
 //  To parse this JSON data, first install
-//
+// 
 //      Boost     http://www.boost.org
 //      json.hpp  https://github.com/nlohmann/json
-//
+// 
 //  Then include this file, and then do
-//
+// 
 //     Reddit data = nlohmann::json::parse(jsonString);
 
 #include "json.hpp"
@@ -26,7 +26,6 @@ namespace quicktype {
 }
 
 namespace nlohmann {
-
     inline void from_json(const json& _j, struct quicktype::Reddit& _x) {
         _x.message = _j.at("message").get<std::string>();
         _x.error = _j.at("error").get<int64_t>();

@@ -1,7 +1,7 @@
 // To parse and unparse this JSON data, add this code to your project and do:
 //
-//    r, err := UnmarshalReddit(bytes)
-//    bytes, err = r.Marshal()
+//    reddit, err := UnmarshalReddit(bytes)
+//    bytes, err = reddit.Marshal()
 
 package main
 
@@ -19,5 +19,5 @@ func (r *Reddit) Marshal() ([]byte, error) {
 
 type Reddit struct {
 	Message string `json:"message"`
-	Error   int64  `json:"error"`
+	Error   int64  `json:"error"`  
 }

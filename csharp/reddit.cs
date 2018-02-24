@@ -2,15 +2,17 @@
 //
 //    using QuickType;
 //
-//    var data = Reddit.FromJson(jsonString);
+//    var reddit = Reddit.FromJson(jsonString);
 
 namespace QuickType
 {
     using System;
-    using System.Net;
     using System.Collections.Generic;
+    using System.Net;
 
+    using System.Globalization;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     public partial class Reddit
     {
@@ -23,20 +25,26 @@ namespace QuickType
 
     public partial class Reddit
     {
-        public static Reddit FromJson(string json) => JsonConvert.DeserializeObject<Reddit>(json, Converter.Settings);
+        public static Reddit FromJson(string json) => JsonConvert.DeserializeObject<Reddit>(json, QuickType.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Reddit self) => JsonConvert.SerializeObject(self, Converter.Settings);
+        public static string ToJson(this Reddit self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
     }
 
-    public class Converter
+    internal class Converter
     {
         public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
         {
             MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
             DateParseHandling = DateParseHandling.None,
+            Converters = { 
+                new IsoDateTimeConverter()
+                {
+                    DateTimeStyles = DateTimeStyles.AssumeUniversal,
+                },
+            },
         };
     }
 }

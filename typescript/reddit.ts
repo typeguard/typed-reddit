@@ -16,7 +16,7 @@ export interface Reddit {
 // and asserts the results of JSON.parse at runtime
 export module Convert {
     export function toReddit(json: string): Reddit {
-        return cast(JSON.parse(json), O("Reddit"));
+        return cast(JSON.parse(json), o("Reddit"));
     }
 
     export function redditToJson(value: Reddit): string {
@@ -57,7 +57,7 @@ export module Convert {
 
     function isValidArray(typ: any, val: any): boolean {
         // val must be an array with no invalid elements
-        return Array.isArray(val) && val.every((element, i) => {
+        return Array.isArray(val) && val.every(element => {
             return isValid(typ, element);
         });
     }
@@ -80,23 +80,23 @@ export module Convert {
         });
     }
 
-    function A(typ: any) {
+    function a(typ: any) {
         return { typ, isArray: true };
     }
 
-    function E(name: string) {
+    function e(name: string) {
         return { name, isEnum: true };
     }
 
-    function U(...typs: any[]) {
+    function u(...typs: any[]) {
         return { typs, isUnion: true };
     }
 
-    function M(typ: any) {
+    function m(typ: any) {
         return { typ, isMap: true };
     }
 
-    function O(className: string) {
+    function o(className: string) {
         return { cls: className, isObject: true };
     }
 

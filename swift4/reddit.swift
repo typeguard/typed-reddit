@@ -1,6 +1,6 @@
 // To parse the JSON, add this file to your project and do:
 //
-//   guard let reddit = try Reddit(json) else { ... }
+//   let reddit = try Reddit(json)
 
 import Foundation
 
@@ -16,22 +16,22 @@ extension Reddit {
         self = try JSONDecoder().decode(Reddit.self, from: data)
     }
 
-    init?(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else { return nil }
+    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+        guard let data = json.data(using: encoding) else {
+            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+        }
         try self.init(data: data)
     }
 
-    init?(fromURL url: String) throws {
-        guard let url = URL(string: url) else { return nil }
-        let data = try Data(contentsOf: url)
-        try self.init(data: data)
+    init(fromURL url: URL) throws {
+        try self.init(data: try Data(contentsOf: url))
     }
 
     func jsonData() throws -> Data {
         return try JSONEncoder().encode(self)
     }
 
-    func jsonString() throws -> String? {
-        return String(data: try self.jsonData(), encoding: .utf8)
+    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+        return String(data: try self.jsonData(), encoding: encoding)
     }
 }

@@ -1,7 +1,7 @@
 // To parse this JSON:
-//
+// 
 //   NSError *error;
-//   QTReddit *reddit = [QTReddit fromJSON:json encoding:NSUTF8Encoding error:&error]
+//   QTReddit *reddit = [QTReddit fromJSON:json encoding:NSUTF8Encoding error:&error];
 
 #import <Foundation/Foundation.h>
 
